@@ -39,7 +39,7 @@ Regra Principal: Validação de Especialidade
 Banco de dados
 
 
-Cadastro de pacientes com informações pessoais
+ Cadastro de pacientes com informações pessoais
 · Registro de médicos com especialidades
 · Controle de tipos de exames disponíveis no hospital
 · Agendamento de consultas médicas
@@ -119,3 +119,11 @@ consulta_id: Referencia a consulta
 · data_agendamento: Data e hora do agendamento
 · sala: Sala do exame
 · status: Status do agendamento
+
+
+
+comandos git:
+git commit -m "descrição" (salva as alterações )
+git push (repositorio local/seu codespace) (repsotiorio sendo ele main ou branch) 
+git branch (faz outra "pasta", altera coisas sem ser o principal)
+git merge (funde a branch com o main)
