@@ -8,8 +8,8 @@ export class MedicoService {
         this.repository = new MedicoRepository();
     }
 
-    async cadastrar(nome: string, crm: string, especialidade: string): Promise<Medico> {
-        const medico = new Medico(nome, crm, especialidade);
+    async cadastrar(nome: string, cpf: string, data_nascimento: Date, crm: string, especialidade: string): Promise<Medico> {
+        const medico = new Medico(nome, cpf, data_nascimento, crm, especialidade);
         return await this.repository.criar(medico);
     }
 
@@ -21,10 +21,12 @@ export class MedicoService {
         return await this.repository.buscarPorId(id);
     }
 
-    async atualizar(id: number, nome?: string, crm?: string, especialidade?: string): Promise<Medico> {
+    async atualizar(id: number, nome?: string, cpf?: string, data_nascimento?: Date, crm?: string, especialidade?: string): Promise<Medico> {
         const medico = await this.repository.buscarPorId(id);
         if (!medico) throw new Error("Médico não encontrado");
         if (nome !== undefined) medico.nome = nome;
+        if (cpf !== undefined) medico.cpf = cpf;
+        if (data_nascimento !== undefined) medico.data_nascimento = data_nascimento;
         if (crm !== undefined) medico.crm = crm;
         if (especialidade !== undefined) medico.especialidade = especialidade;
         return await this.repository.atualizar(medico);
