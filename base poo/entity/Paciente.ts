@@ -1,22 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Pessoa } from "./Pessoa";
 
 @Entity()
-export class Paciente {
+export class Paciente extends Pessoa {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({ name: "nome" })
-    nome: string;
-
-    @Column({ name: "cpf", unique: true })
-    cpf: string;
-
-    @Column({ name: "data_nascimento" })
-    data_nascimento: Date;
-
     constructor(nome: string, cpf: string, data_nascimento: Date) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.data_nascimento = data_nascimento;
+        super(nome, cpf, data_nascimento);
     }
 }

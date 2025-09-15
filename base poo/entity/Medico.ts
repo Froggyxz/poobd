@@ -1,12 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Pessoa } from "./Pessoa";
 
 @Entity()
-export class Medico {
+export class Medico extends Pessoa {
     @PrimaryGeneratedColumn()
     id!: number;
-
-    @Column({ name: "nome" })
-    nome: string;
 
     @Column({ name: "crm", unique: true })
     crm: string;
@@ -14,8 +12,8 @@ export class Medico {
     @Column({ name: "especialidade" })
     especialidade: string;
 
-    constructor(nome: string, crm: string, especialidade: string) {
-        this.nome = nome;
+    constructor(nome: string, cpf: string, data_nascimento: Date, crm: string, especialidade: string) {
+        super(nome, cpf, data_nascimento);
         this.crm = crm;
         this.especialidade = especialidade;
     }
