@@ -1,23 +1,23 @@
 import { banco } from "./banco";
-import { MusicaService } from "./service/MusicaService";
+import { HospitalService } from "./service/HospitalService";
 
 banco.initialize().then(async () => {
-  const musicaService:MusicaService = new MusicaService();
+  const HospitalService:HospitalService = new HospitalService();
 
-  const imagine = await musicaService.cadastrar("Imagine", 183);
-  await musicaService.atualizar(imagine.id, "Imagine - Alterada", 187);
+  const imagine = await HospitalService.cadastrar("Imagine", 183);
+  await HospitalService.atualizar(imagine.id, "Imagine - Alterada", 187);
   
-  await musicaService.cadastrar("Bohemian Rhapsody", 354);
-  await musicaService.cadastrar("Stairway to Heaven", 482);
+  await HospitalService.cadastrar("Bohemian Rhapsody", 354);
+  await HospitalService.cadastrar("Stairway to Heaven", 482);
 
-  const todasMusicas = await musicaService.listarTodos();
-  console.log("Todas as músicas:", todasMusicas);
+  const todosHospitais = await HospitalService.listarTodos();
+  console.log("Todos os hospitais:", todosHospitais);
 
-  const musicaPorId = await musicaService.buscar(2);
-  console.log("Música com ID 2:", musicaPorId);
+  const hospitalPorId = await HospitalService.buscar(2);
+  console.log("Hospital com ID 2:", hospitalPorId);
 
 
-  await musicaService.excluir(1);
-  const musicasAposExclusao = await musicaService.listarTodos();
-  console.log("Músicas após exclusão da ID 1:", musicasAposExclusao);
+  await HospitalService.excluir(1);
+  const hospitaisAposExclusao = await HospitalService.listarTodos();
+  console.log("Hospitais após exclusão da ID 1:", hospitaisAposExclusao);
 });

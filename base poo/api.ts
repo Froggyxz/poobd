@@ -1,11 +1,11 @@
 
 import { banco } from "./banco"
 import express from 'express';
-import MusicaRouter from "./route/MusicaRouter";
+import MusicaRouter from "./route/HospitalRouter";
 
 const minhaAPI = express();
 minhaAPI.use(express.json());
-minhaAPI.use('/musica', MusicaRouter);
+minhaAPI.use('/Hospital', MusicaRouter);
 const porta = 3000;
 
 minhaAPI.listen(porta, async() => {
