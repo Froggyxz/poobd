@@ -4,7 +4,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Pessoa {
     @PrimaryGeneratedColumn()
-    id: number;
+    id?: number;
 
     @Column()
     cpf: string;
@@ -15,10 +15,11 @@ export class Pessoa {
     @Column()
     nome: string;
 
-    /*constructor(nome: string, cpf: string, data_nascimento: Date) {
+    constructor(nome: string, cpf: string, data_nascimento: Date) {
         this.nome = nome;
         this.cpf = cpf;
         this.data_nascimento = data_nascimento;
     }
-    */
+    
+    
 }
