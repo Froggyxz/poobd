@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ConsultaService } from "../service/ConsultaService";
+import { Consulta } from "../entity/Consulta";
 
 
 export class ConsultaController {
@@ -11,9 +12,10 @@ export class ConsultaController {
 
   async criar(req: Request, res: Response): Promise<Response> {
     try {
-      const { paciente, medico, data_consulta, valor } = req.body;
-      const novo = await this.consultaService.cadastrar(paciente, medico, new Date(data_consulta), valor);
-      return res.status(201).json(novo);
+      const consulta: Consulta = req.body;
+      const novaConsulta = await this.consultaService.criar(consulta);
+      
+      return res.status(201).json(novaConsulta);
     } catch (error: any) {
       return res.status(400).json({ message: 'Erro ao criar consulta.', error: error.message });
     }

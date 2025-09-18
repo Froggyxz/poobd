@@ -14,11 +14,11 @@ export class ConsultaRepository {
     }
 
     async listar(): Promise<Consulta[]> {
-        return await this.repositorio.find();
+        return await this.repositorio.find({ relations: ["paciente", "medico"] });
     }
 
     async buscarPorId(id: number): Promise<Consulta | null> {
-        return await this.repositorio.findOneBy({ id });
+        return await this.repositorio.findOne({ where: { id }, relations: ["paciente", "medico"] });
     }
 
     async atualizar(consulta: Consulta): Promise<Consulta> {

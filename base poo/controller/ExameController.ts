@@ -11,8 +11,8 @@ export class ExameController {
 
   async criar(req: Request, res: Response): Promise<Response> {
     try {
-      const { nome, codigo, especialidade_requerida, valor } = req.body;
-      const novo = await this.exameService.cadastrar(nome, codigo, especialidade_requerida, valor);
+      const { id,nome, codigo, especialidade_requerida, valor } = req.body;
+      const novo = await this.exameService.criar(id,nome, codigo, especialidade_requerida, valor);
       return res.status(201).json(novo);
     } catch (error: any) {
       return res.status(400).json({ message: 'Erro ao criar exame.', error: error.message });

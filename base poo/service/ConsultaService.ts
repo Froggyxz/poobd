@@ -1,4 +1,6 @@
 import { Consulta } from "../entity/Consulta";
+import { Medico } from "../entity/Medico";
+import { Paciente } from "../entity/Paciente";
 import { ConsultaRepository } from "../repository/ConsultaRepository";
 
 export class ConsultaService {
@@ -8,8 +10,8 @@ export class ConsultaService {
         this.repository = new ConsultaRepository();
     }
 
-    async cadastrar(id: number, paciente: any, medico: any, data_consulta: Date, valor: number): Promise<Consulta> {
-        const consulta = new Consulta(id, paciente, medico, data_consulta, valor);
+    async criar(consulta: Consulta): Promise<Consulta> {
+        //const consulta = new Consulta(consulta);
         return await this.repository.criar(consulta);
     }
 
@@ -21,7 +23,7 @@ export class ConsultaService {
         return await this.repository.buscarPorId(id);
     }
 
-    async atualizar(id: number, paciente?: any, medico?: any, data_consulta?: Date, valor?: number): Promise<Consulta> {
+    async atualizar(id: number, paciente?: Paciente, medico?: Medico, data_consulta?: Date, valor?: number): Promise<Consulta> {
         const consulta = await this.repository.buscarPorId(id);
         if (!consulta) throw new Error("Consulta não encontrada");
         if (paciente !== undefined) consulta.paciente = paciente;

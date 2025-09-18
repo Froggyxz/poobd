@@ -1,4 +1,8 @@
 import { Agendamento } from "../entity/Agendamento";
+import { Consulta } from "../entity/Consulta";
+import { Exame } from "../entity/Exame";
+import { Medico } from "../entity/Medico";
+import { Paciente } from "../entity/Paciente";
 import { AgendamentoRepository } from "../repository/AgendamentoRepository";
 
 export class AgendamentoService {
@@ -8,8 +12,8 @@ export class AgendamentoService {
         this.repository = new AgendamentoRepository();
     }
 
-    async cadastrar(id: number, paciente: any, consulta: any, exame: any, medico: any, data_agendamento: Date, sala: string, status: string): Promise<Agendamento> {
-        const agendamento = new Agendamento(id, paciente, consulta, exame, medico, data_agendamento, sala, status);
+    async criar(id: number, paciente: Paciente, consulta: Consulta, exame: Exame, medico: Medico, data_agendamento: Date, sala: string, status: string): Promise<Agendamento> {
+        const agendamento = new Agendamento(paciente, consulta, exame, medico, data_agendamento, sala, status);
         return await this.repository.criar(agendamento);
     }
 
@@ -21,7 +25,7 @@ export class AgendamentoService {
         return await this.repository.buscarPorId(id);
     }
 
-    async atualizar(id: number, paciente?: any, consulta?: any, exame?: any, medico?: any, data_agendamento?: Date, sala?: string, status?: string): Promise<Agendamento> {
+    async atualizar(id: number, paciente?: Paciente, consulta?: Consulta, exame?: Exame, medico?: Medico, data_agendamento?: Date, sala?: string, status?: string): Promise<Agendamento> {
         const agendamento = await this.repository.buscarPorId(id);
         if (!agendamento) throw new Error("Agendamento não encontrado");
         if (paciente !== undefined) agendamento.paciente = paciente;

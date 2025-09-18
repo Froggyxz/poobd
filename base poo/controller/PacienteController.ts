@@ -11,8 +11,8 @@ export class PacienteController {
 
   async criar(req: Request, res: Response): Promise<Response> {
     try {
-      const { nome, cpf, data_nascimento } = req.body;
-      const novo = await this.pacienteService.cadastrar(nome, cpf, new Date(data_nascimento));
+      const {nome, cpf, data_nascimento } = req.body;
+      const novo = await this.pacienteService.criar(nome, cpf, new Date(data_nascimento));
       return res.status(201).json(novo);
     } catch (error: any) {
       return res.status(400).json({ message: 'Erro ao criar paciente.', error: error.message });

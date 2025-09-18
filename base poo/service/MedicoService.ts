@@ -8,8 +8,8 @@ export class MedicoService {
         this.repository = new MedicoRepository();
     }
 
-    async cadastrar(id: number, nome: string, cpf: string, data_nascimento: Date, crm: string, especialidade: string): Promise<Medico> {
-        const medico = new Medico(id, nome, cpf, data_nascimento, crm, especialidade);
+    async criar(id: number, nome: string, cpf: string, data_nascimento: Date, crm: string, especialidade: string): Promise<Medico> {
+        const medico = new Medico(nome, cpf, data_nascimento, crm, especialidade);
         return await this.repository.criar(medico);
     }
 

@@ -10,8 +10,8 @@ export class AgendamentoController {
 
   async criar(req: Request, res: Response): Promise<Response> {
     try {
-      const { paciente, consulta, exame, medico, data_agendamento, sala, status } = req.body;
-      const novo = await this.agendamentoService.cadastrar(paciente, consulta, exame, medico, new Date(data_agendamento), sala, status);
+      const {id, paciente, consulta, exame, medico, data_agendamento, sala, status } = req.body;
+      const novo = await this.agendamentoService.criar(id,paciente, consulta, exame, medico, new Date(data_agendamento), sala, status);
       return res.status(201).json(novo);
     } catch (error: any) {
       return res.status(400).json({ message: 'Erro ao criar agendamento.', error: error.message });
