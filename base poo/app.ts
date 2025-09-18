@@ -4,7 +4,6 @@ import { MedicoService } from "./service/MedicoService";
 import { ExameService } from "./service/ExameService";
 import { ConsultaService } from "./service/ConsultaService";
 import { AgendamentoService } from "./service/AgendamentoService";
-import { HospitalService } from "./service/HospitalService";
 
 banco.initialize().then(async () => {
   const pacienteService = new PacienteService();
@@ -12,23 +11,20 @@ banco.initialize().then(async () => {
   const exameService = new ExameService();
   const consultaService = new ConsultaService();
   const agendamentoService = new AgendamentoService();
-  const hospitalService = new HospitalService();
 
   // Cadastro de Paciente
   const paciente1 = await pacienteService.cadastrar("João Silva", "12345678900", new Date("1990-05-10"));
   const paciente2 = await pacienteService.cadastrar("Maria Souza", "98765432100", new Date("1985-11-22"));
 
   // Cadastro de Médico
-  const medico1 = await medicoService.cadastrar("Dr. Carlos", "1111111", new Date("1970-01-01"), "Cardiologia");
-  const medico2 = await medicoService.cadastrar("Dra. Ana", "2222222", new Date("1980-02-02"), "Pediatria");
+  const medico1 = await medicoService.cadastrar("Dr. Carlos", "11111111111", new Date("1970-01-01"), "CRM001", "Cardiologia");
+  const medico2 = await medicoService.cadastrar("Dra. Ana", "22222222222", new Date("1980-02-02"), "CRM002", "Pediatria");
 
   // Cadastro de Exame
   const exame1 = await exameService.cadastrar("Hemograma", "EX001", "Hematologia", 50.0);
   const exame2 = await exameService.cadastrar("Raio-X", "EX002", "Radiologia", 120.0);
 
-  // Cadastro de Hospital
-  const hospital1 = await hospitalService.cadastrar("Hospital Central", "123456", "Geral");
-
+  
   // Cadastro de Consulta
   const consulta1 = await consultaService.cadastrar(paciente1, medico1, new Date("2025-09-20T10:00:00"), 200.0);
 
@@ -55,9 +51,6 @@ banco.initialize().then(async () => {
   const todosAgendamentos = await agendamentoService.listarTodos();
   console.log("Todos os agendamentos:", todosAgendamentos);
 
-  // Listar todos os hospitais
-  const todosHospitais = await hospitalService.listarTodos();
-  console.log("Todos os hospitais:", todosHospitais);
 
   // Buscar paciente por ID
   const pacientePorId = await pacienteService.buscar(paciente1.id);
@@ -79,10 +72,6 @@ banco.initialize().then(async () => {
   const agendamentoPorId = await agendamentoService.buscar(agendamento1.id);
   console.log("Agendamento com ID", agendamento1.id, ":", agendamentoPorId);
 
-  // Buscar hospital por ID
-  const hospitalPorId = await hospitalService.buscar(hospital1.id);
-  console.log("Hospital com ID", hospital1.id, ":", hospitalPorId);
-
   // Atualizar paciente
   await pacienteService.atualizar(paciente2.id, "Maria Souza Alterada");
   // Atualizar médico
@@ -93,9 +82,6 @@ banco.initialize().then(async () => {
   await consultaService.atualizar(consulta1.id, paciente1, medico1, new Date("2025-09-20T11:00:00"), 220.0);
   // Atualizar agendamento
   await agendamentoService.atualizar(agendamento1.id, paciente1, consulta1, exame1, medico1, new Date("2025-09-21T10:00:00"), "Sala 2", "Realizado");
-  // Atualizar hospital
-  await hospitalService.atualizar(hospital1.id, "Hospital Central Alterado");
-
   // Excluir paciente
   await pacienteService.excluir(paciente1.id);
   const pacientesAposExclusao = await pacienteService.listarTodos();
@@ -121,8 +107,4 @@ banco.initialize().then(async () => {
   const agendamentosAposExclusao = await agendamentoService.listarTodos();
   console.log("Agendamentos após exclusão:", agendamentosAposExclusao);
 
-  // Excluir hospital
-  await hospitalService.excluir(hospital1.id);
-  const hospitaisAposExclusao = await hospitalService.listarTodos();
-  console.log("Hospitais após exclusão:", hospitaisAposExclusao);
 });
