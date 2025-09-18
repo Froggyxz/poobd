@@ -1,6 +1,7 @@
-/* Coloque o código da consulta 1 aqui */
+-- Visão 1: União de exames de Cardiologia e Pediatria
+CREATE VIEW exames_cardiopediatria AS
+SELECT * FROM Exame WHERE especialidade_requerida = 'Cardiologia'
+UNION
+SELECT * FROM Exame WHERE especialidade_requerida = 'Pediatria';
 
-CREATE VIEW exemplo
-AS SELECT * FROM apagar;
-
-SELECT * FROM EXEMPLO;
+SELECT * FROM exames_cardiopediatria;

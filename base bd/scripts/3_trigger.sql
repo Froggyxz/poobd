@@ -1,10 +1,15 @@
-DELIMITER //
 
-CREATE TRIGGER trigger_exemplo
-BEFORE INSERT ON apagar
+CREATE TRIGGER valida_especialidade_agendamento
+BEFORE INSERT ON Agendamento
 FOR EACH ROW
 BEGIN
-    INSERT INTO apagar_tambem(mensagem) VALUES ('Trigger super simples só para exemplificar.');
-END//
+    DECLARE especialidade_medico VARCHAR(100);
+    DECLARE especialidade_exame VARCHAR(100);
 
-DELIMITER ;
+    SELECT especialidade INTO especialidade_medico FROM Medico WHERE id = NEW.medico_id;
+    SELECT especialidade_requerida INTO especialidade_exame FROM Exame WHERE id = NEW.exame_id;
+
+    IF especialidade_medico <> especialidade_exame THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Especialidade do médico não é compatível com o exame agendado.';
+    END IF;
+END;
