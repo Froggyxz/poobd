@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, PrimaryColumn } from "typeorm";
+import { PrimaryGeneratedColumn } from "typeorm";
 import { Pessoa } from "./Pessoa";
 
 @Entity()

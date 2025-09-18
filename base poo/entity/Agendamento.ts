@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
 import { Paciente } from "./Paciente";
 import { Exame } from "./Exame";
 import { Medico } from "./Medico";
@@ -31,7 +31,6 @@ export class Agendamento {
     @Column({ name: "sala" })
     sala: string;
 
-    @Column({ name: "status" })
     status: string;
 
     constructor(paciente: Paciente, consulta: Consulta, exame: Exame, medico: Medico, data_agendamento: Date, sala: string, status: string) {
