@@ -8,8 +8,8 @@ export class ExameService {
         this.repository = new ExameRepository();
     }
 
-    async cadastrar(nome: string, codigo: string, especialidade_requerida: string, valor: number): Promise<Exame> {
-        const exame = new Exame(nome, codigo, especialidade_requerida, valor);
+    async cadastrar(id: number, nome: string, codigo: string, especialidade_requerida: string, valor: number): Promise<Exame> {
+        const exame = new Exame(id, nome, codigo, especialidade_requerida, valor);
         return await this.repository.criar(exame);
     }
 

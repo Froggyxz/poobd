@@ -5,26 +5,27 @@ import { Medico } from "./Medico";
 @Entity()
 export class Consulta {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
     @ManyToOne(() => Paciente)
-    @JoinColumn({ name: "paciente_id" })
+    @JoinColumn()
     paciente: Paciente;
 
     @ManyToOne(() => Medico)
-    @JoinColumn({ name: "medico_id" })
+    @JoinColumn()
     medico: Medico;
 
-    @Column({ name: "data_consulta" })
+    @Column()
     data_consulta: Date;
 
-    @Column({ name: "valor" })
+    @Column()
     valor: number;
 
-    constructor(paciente: Paciente, medico: Medico, data_consulta: Date, valor: number) {
+    /*constructor(id: number, paciente: Paciente, medico: Medico, data_consulta: Date, valor: number) {
+        this.id = id;
         this.paciente = paciente;
         this.medico = medico;
         this.data_consulta = data_consulta;
         this.valor = valor;
-    }
+    }*/
 }

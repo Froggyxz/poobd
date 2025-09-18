@@ -7,33 +7,35 @@ import { Consulta } from "./Consulta";
 @Entity()
 export class Agendamento {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
     @ManyToOne(() => Paciente)
-    @JoinColumn({ name: "paciente_id" })
+    @JoinColumn()
     paciente: Paciente;
 
     @ManyToOne(() => Consulta)
-    @JoinColumn({ name: "consulta_id" })
+    @JoinColumn()
     consulta: Consulta;
 
     @ManyToOne(() => Exame)
-    @JoinColumn({ name: "exame_id" })
+    @JoinColumn()
     exame: Exame;
 
     @ManyToOne(() => Medico)
-    @JoinColumn({ name: "medico_id" })
+    @JoinColumn()
     medico: Medico;
 
-    @Column({ name: "data_agendamento" })
+    @Column()
     data_agendamento: Date;
 
-    @Column({ name: "sala" })
+    @Column()
     sala: string;
 
+    @Column()
     status: string;
 
-    constructor(paciente: Paciente, consulta: Consulta, exame: Exame, medico: Medico, data_agendamento: Date, sala: string, status: string) {
+    /*constructor(id: number, paciente: Paciente, consulta: Consulta, exame: Exame, medico: Medico, data_agendamento: Date, sala: string, status: string) {
+        this.id = id;
         this.paciente = paciente;
         this.consulta = consulta;
         this.exame = exame;
@@ -41,5 +43,5 @@ export class Agendamento {
         this.data_agendamento = data_agendamento;
         this.sala = sala;
         this.status = status;
-    }
+    }*/
 }

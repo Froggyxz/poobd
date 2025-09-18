@@ -1,13 +1,14 @@
-import { Entity, PrimaryColumn } from "typeorm";
-import { PrimaryGeneratedColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn } from "typeorm";
 import { Pessoa } from "./Pessoa";
 
 @Entity()
 export class Paciente extends Pessoa {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
-    constructor(nome: string, cpf: string, data_nascimento: Date) {
+    /*constructor(id: number, nome: string, cpf: string, data_nascimento: Date) {
         super(nome, cpf, data_nascimento);
+        this.id = id;
     }
+    */
 }

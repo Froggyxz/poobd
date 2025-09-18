@@ -8,8 +8,8 @@ export class ConsultaService {
         this.repository = new ConsultaRepository();
     }
 
-    async cadastrar(paciente: any, medico: any, data_consulta: Date, valor: number): Promise<Consulta> {
-        const consulta = new Consulta(paciente, medico, data_consulta, valor);
+    async cadastrar(id: number, paciente: any, medico: any, data_consulta: Date, valor: number): Promise<Consulta> {
+        const consulta = new Consulta(id, paciente, medico, data_consulta, valor);
         return await this.repository.criar(consulta);
     }
 

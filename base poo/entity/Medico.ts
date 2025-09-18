@@ -4,17 +4,19 @@ import { Pessoa } from "./Pessoa";
 @Entity()
 export class Medico extends Pessoa {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
-    @Column({ name: "crm", unique: true })
+    @Column()
     crm: string;
 
-    @Column({ name: "especialidade" })
+    @Column()
     especialidade: string;
 
-    constructor(nome: string, cpf: string, data_nascimento: Date, crm: string, especialidade: string) {
+    /*constructor(id: number, nome: string, cpf: string, data_nascimento: Date, crm: string, especialidade: string) {
         super(nome, cpf, data_nascimento);
+        this.id = id;
         this.crm = crm;
         this.especialidade = especialidade;
     }
+    */
 }

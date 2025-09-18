@@ -13,23 +13,23 @@ banco.initialize().then(async () => {
   const agendamentoService = new AgendamentoService();
 
   // Cadastro de Paciente
-  const paciente1 = await pacienteService.cadastrar("João Silva", "12345678900", new Date("1990-05-10"));
-  const paciente2 = await pacienteService.cadastrar("Maria Souza", "98765432100", new Date("1985-11-22"));
+  const paciente1 = await pacienteService.cadastrar(1, "João Silva", "12345678900", new Date("1990-05-10"));
+  const paciente2 = await pacienteService.cadastrar(2, "Maria Souza", "98765432100", new Date("1985-11-22"));
 
   // Cadastro de Médico
-  const medico1 = await medicoService.cadastrar("Dr. Carlos", "11111111111", new Date("1970-01-01"), "CRM001", "Cardiologia");
-  const medico2 = await medicoService.cadastrar("Dra. Ana", "22222222222", new Date("1980-02-02"), "CRM002", "Pediatria");
+  const medico1 = await medicoService.cadastrar(1, "Dr. Carlos", "11111111111", new Date("1970-01-01"), "CRM001", "Cardiologia");
+  const medico2 = await medicoService.cadastrar(2, "Dra. Ana", "22222222222", new Date("1980-02-02"), "CRM002", "Pediatria");
 
   // Cadastro de Exame
-  const exame1 = await exameService.cadastrar("Hemograma", "EX001", "Hematologia", 50.0);
-  const exame2 = await exameService.cadastrar("Raio-X", "EX002", "Radiologia", 120.0);
+  const exame1 = await exameService.cadastrar(1, "Hemograma", "EX001", "Hematologia", 50.0);
+  const exame2 = await exameService.cadastrar(2, "Raio-X", "EX002", "Radiologia", 120.0);
 
   
   // Cadastro de Consulta
-  const consulta1 = await consultaService.cadastrar(paciente1, medico1, new Date("2025-09-20T10:00:00"), 200.0);
+  const consulta1 = await consultaService.cadastrar(1, paciente1, medico1, new Date("2025-09-20T10:00:00"), 200.0);
 
   // Cadastro de Agendamento
-  const agendamento1 = await agendamentoService.cadastrar(paciente1, consulta1, exame1, medico1, new Date("2025-09-21T09:00:00"), "Sala 1", "Agendado");
+  const agendamento1 = await agendamentoService.cadastrar(1, paciente1, consulta1, exame1, medico1, new Date("2025-09-21T09:00:00"), "Sala 1", "Agendado");
 
   // Listar todos os pacientes
   const todosPacientes = await pacienteService.listarTodos();
@@ -52,47 +52,62 @@ banco.initialize().then(async () => {
   console.log("Todos os agendamentos:", todosAgendamentos);
 
 
-  // Buscar paciente por ID
+  // Buscar por ID (completo)
   const pacientePorId = await pacienteService.buscar(paciente1.id);
   console.log("Paciente com ID", paciente1.id, ":", pacientePorId);
 
-  // Buscar médico por ID
   const medicoPorId = await medicoService.buscar(medico1.id);
   console.log("Médico com ID", medico1.id, ":", medicoPorId);
 
-  // Buscar exame por ID
   const examePorId = await exameService.buscar(exame1.id);
   console.log("Exame com ID", exame1.id, ":", examePorId);
 
-  // Buscar consulta por ID
   const consultaPorId = await consultaService.buscar(consulta1.id);
   console.log("Consulta com ID", consulta1.id, ":", consultaPorId);
 
-  // Buscar agendamento por ID
   const agendamentoPorId = await agendamentoService.buscar(agendamento1.id);
   console.log("Agendamento com ID", agendamento1.id, ":", agendamentoPorId);
 
-  // Atualizar paciente
+  // Atualizar entidades usando objetos completos
   await pacienteService.atualizar(paciente2.id, "Maria Souza Alterada");
-  // Atualizar médico
   await medicoService.atualizar(medico2.id, "Dra. Ana Alterada");
-  // Atualizar exame
   await exameService.atualizar(exame2.id, "Raio-X Alterado");
-  // Atualizar consulta
-  await consultaService.atualizar(consulta1.id, paciente1, medico1, new Date("2025-09-20T11:00:00"), 220.0);
-  // Atualizar agendamento
-  await agendamentoService.atualizar(agendamento1.id, paciente1, consulta1, exame1, medico1, new Date("2025-09-21T10:00:00"), "Sala 2", "Realizado");
-  // Excluir paciente
+  await consultaService.atualizar(consulta1.id, pacientePorId, medicoPorId, new Date("2025-09-20T11:00:00"), 220.0);
+  await agendamentoService.atualizar(agendamento1.id, pacientePorId, consultaPorId, examePorId, medicoPorId, new Date("2025-09-21T10:00:00"), "Sala 2", "Realizado");
+
+  // Excluir agendamentos e consultas relacionados ao paciente antes de excluir paciente
+  const agendamentosPaciente1 = (await agendamentoService.listarTodos()).filter(a => a.paciente && a.paciente.id === paciente1.id);
+  for (const agendamento of agendamentosPaciente1) {
+    await agendamentoService.excluir(agendamento.id);
+  }
+  // Após excluir agendamentos, excluir consultas relacionadas
+  const consultasPaciente1 = (await consultaService.listarTodos()).filter(c => c.paciente && c.paciente.id === paciente1.id);
+  for (const consulta of consultasPaciente1) {
+    await consultaService.excluir(consulta.id);
+  }
+  // Agora pode excluir o paciente
   await pacienteService.excluir(paciente1.id);
   const pacientesAposExclusao = await pacienteService.listarTodos();
   console.log("Pacientes após exclusão:", pacientesAposExclusao);
 
-  // Excluir médico
+  // Excluir médico (com limpeza de dependências)
+  const agendamentosMedico1 = (await agendamentoService.listarTodos()).filter(a => a.medico && a.medico.id === medico1.id);
+  for (const agendamento of agendamentosMedico1) {
+    await agendamentoService.excluir(agendamento.id);
+  }
+  const consultasMedico1 = (await consultaService.listarTodos()).filter(c => c.medico && c.medico.id === medico1.id);
+  for (const consulta of consultasMedico1) {
+    await consultaService.excluir(consulta.id);
+  }
   await medicoService.excluir(medico1.id);
   const medicosAposExclusao = await medicoService.listarTodos();
   console.log("Médicos após exclusão:", medicosAposExclusao);
 
-  // Excluir exame
+  // Excluir exame (com limpeza de dependências)
+  const agendamentosExame1 = (await agendamentoService.listarTodos()).filter(a => a.exame && a.exame.id === exame1.id);
+  for (const agendamento of agendamentosExame1) {
+    await agendamentoService.excluir(agendamento.id);
+  }
   await exameService.excluir(exame1.id);
   const examesAposExclusao = await exameService.listarTodos();
   console.log("Exames após exclusão:", examesAposExclusao);

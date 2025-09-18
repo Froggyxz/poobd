@@ -3,24 +3,26 @@ import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Exame {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
-    @Column({ name: "nome" })
+    @Column()
     nome: string;
 
-    @Column({ name: "codigo", unique: true })
+    @Column()
     codigo: string;
 
-    @Column({ name: "especialidade_requerida" })
+    @Column()
     especialidade_requerida: string;
 
-    @Column({ name: "valor" })
+    @Column()
     valor: number;
 
-    constructor(nome: string, codigo: string, especialidade_requerida: string, valor: number) {
+    /*constructor(id: number, nome: string, codigo: string, especialidade_requerida: string, valor: number) {
+        this.id = id;
         this.nome = nome;
         this.codigo = codigo;
         this.especialidade_requerida = especialidade_requerida;
         this.valor = valor;
-    }
+    }*/
 }
+

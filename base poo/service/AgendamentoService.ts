@@ -8,8 +8,8 @@ export class AgendamentoService {
         this.repository = new AgendamentoRepository();
     }
 
-    async cadastrar(paciente: any, consulta: any, exame: any, medico: any, data_agendamento: Date, sala: string, status: string): Promise<Agendamento> {
-        const agendamento = new Agendamento(paciente, consulta, exame, medico, data_agendamento, sala, status);
+    async cadastrar(id: number, paciente: any, consulta: any, exame: any, medico: any, data_agendamento: Date, sala: string, status: string): Promise<Agendamento> {
+        const agendamento = new Agendamento(id, paciente, consulta, exame, medico, data_agendamento, sala, status);
         return await this.repository.criar(agendamento);
     }
 
