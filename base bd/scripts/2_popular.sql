@@ -508,3 +508,4 @@ INSERT INTO Agendamentos (pacientes_id, consultas_id, exames_id, medicos_id, dat
 	(98, 98, 98, 98, '2025-04-08 15:30:00', 'Sala 98', 'Realizado'),
 	(99, 99, 99, 99, '2025-04-09 16:30:00', 'Sala 99', 'Cancelado'),
 	(100, 100, 100, 100, '2025-04-10 17:30:00', 'Sala 100', 'Agendado');
+
