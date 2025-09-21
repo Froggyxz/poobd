@@ -8,8 +8,8 @@ BEGIN
     DECLARE especialidade_medicos VARCHAR(100);
     DECLARE especialidade_exames VARCHAR(100);
 
-    SELECT especialidade INTO especialidade_medicos FROM medicos WHERE id = NEW.id;
-    SELECT especialidade_requerida INTO especialidade_exames FROM exames WHERE id = NEW.id;
+    SELECT especialidade INTO especialidade_medicos FROM medicos WHERE id = NEW.id LIMIT 1;
+    SELECT especialidade_requerida INTO especialidade_exames FROM exames WHERE id = NEW.id LIMIT 1;
 
     IF especialidade_medicos <> especialidade_exames THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Especialidade do médico não é compatível com o exame agendado.';
