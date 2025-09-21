@@ -1,4 +1,4 @@
-import 'reflect-metadata';
+
 import { banco } from "./banco";
 import { PacienteService } from "./service/PacienteService";
 import { MedicoService } from "./service/MedicoService";
