@@ -42,16 +42,16 @@ CREATE TABLE consultas (
 -- Tabela de AGENDAMENTOS
 CREATE TABLE agendamentos (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    pacientes_id INTEGER NOT NULL,
+    pacientes_id INTEGER,
     consultas_id INTEGER,
-    exames_id INTEGER NOT NULL,
-    medicos_id INTEGER NOT NULL,
+    exames_id INTEGER,
+    medicos_id INTEGER,
     data_agendamento TIMESTAMP NOT NULL,
     sala VARCHAR(20) NOT NULL,
     status VARCHAR(20) DEFAULT 'agendado' CHECK (status IN ('agendado', 'realizado', 'cancelado')),
-    
-    FOREIGN KEY (pacientes_id) REFERENCES pacientes(id) ON DELETE CASCADE,
-    FOREIGN KEY (consultas_id) REFERENCES consultas(id) ON DELETE SET NULL,
-    FOREIGN KEY (exames_id) REFERENCES exames(id) ON DELETE CASCADE,
-    FOREIGN KEY (medicos_id) REFERENCES medicos(id) ON DELETE CASCADE
+
+    FOREIGN KEY (pacientes_id) REFERENCES pacientes(id),
+    FOREIGN KEY (consultas_id) REFERENCES consultas(id),
+    FOREIGN KEY (exames_id) REFERENCES exames(id),
+    FOREIGN KEY (medicos_id) REFERENCES medicos(id)
 );

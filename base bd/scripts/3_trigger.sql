@@ -1,4 +1,6 @@
-DELIMITER $$
+USE trabalho;
+
+DELIMITER //
 CREATE TRIGGER valida_especialidade_agendamento
 BEFORE INSERT ON agendamentos
 FOR EACH ROW
@@ -13,4 +15,5 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Especialidade do médico não é compatível com o exame agendado.';
     END IF;
 END;
-DELIMITER
+//
+DELIMITER ;
