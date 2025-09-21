@@ -203,7 +203,7 @@ INSERT INTO medicos (nome, crm, especialidade) VALUES
 ('Dr(a). Fernanda Andrade', 'CRM099', 'Endocrinologia'),
 ('Dr(a). Gabriel Nogueira', 'CRM100', 'Neurologia');
 
-INSERT INTO exames (nome, codigo, especialidade_requerida, valor) VALUES
+INSERT INTO Exames (nome, codigo, especialidade_requerida, valor) VALUES
 	('Eletrocardiograma', 'EX001', 'Cardiologia', 100.0),
 ('Ecocardiograma', 'EX002', 'Cardiologia', 120.0),
 ('Teste Ergométrico', 'EX003', 'Cardiologia', 130.0),
@@ -407,7 +407,7 @@ INSERT INTO consultas (pacientes_id, medicos_id, data_consulta, valor) VALUES
 	(99, 99, '2025-04-09 16:00:00', 280.0),
 	(100, 100, '2025-04-10 17:00:00', 290.0);
 
-INSERT INTO agendamentos (pacientes_id, consultas_id, exames_id, medicos_id, data_agendamento, sala, status) VALUES
+INSERT INTO Agendamentos (pacientes_id, consultas_id, exames_id, medicos_id, data_agendamento, sala, status) VALUES
 	(1, 1, 1, 1, '2025-01-01 08:30:00', 'Sala 1', 'Agendado'),
 	(2, 2, 2, 2, '2025-01-02 09:30:00', 'Sala 2', 'Realizado'),
 	(3, 3, 3, 3, '2025-01-03 10:30:00', 'Sala 3', 'Cancelado'),
@@ -508,4 +508,3 @@ INSERT INTO agendamentos (pacientes_id, consultas_id, exames_id, medicos_id, dat
 	(98, 98, 98, 98, '2025-04-08 15:30:00', 'Sala 98', 'Realizado'),
 	(99, 99, 99, 99, '2025-04-09 16:30:00', 'Sala 99', 'Cancelado'),
 	(100, 100, 100, 100, '2025-04-10 17:30:00', 'Sala 100', 'Agendado');
-
