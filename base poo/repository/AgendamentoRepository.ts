@@ -15,14 +15,14 @@ export class AgendamentoRepository {
 
     async listar(): Promise<Agendamento[]> {
         return await this.repositorio.find({
-            relations: ["paciente", "consulta", "exame", "medico"]
+            relations: ["paciente", "consulta", "consulta.paciente", "consulta.medico", "exame", "medico"]
         });
     }
 
     async buscarPorId(id: number): Promise<Agendamento | null> {
         return await this.repositorio.findOne({
             where: { id },
-            relations: ["paciente", "consulta", "exame", "medico"]
+            relations: ["paciente", "consulta", "consulta.paciente", "consulta.medico", "exame", "medico"]
         });
     }
 
