@@ -1,6 +1,6 @@
 DELIMITER $$
 CREATE TRIGGER valida_especialidade_agendamento
-BEFORE INSERT ON Agendamento
+BEFORE INSERT ON agendamento
 FOR EACH ROW
 BEGIN
     DECLARE especialidade_medicos VARCHAR(100);
