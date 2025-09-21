@@ -20,6 +20,16 @@ export class Pessoa {
         this.cpf = cpf;
         this.data_nascimento = data_nascimento;
     }
-    
-    
+
+    getNome(): string {
+        return this.nome;
+    }
+
+    getCpf(): string {
+        return this.cpf;
+    }
+
+    getDataNascimento(): Date {
+        return this.data_nascimento;
+    }
 }

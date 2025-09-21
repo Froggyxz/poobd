@@ -27,9 +27,12 @@ banco.initialize().then(async () => {
   const exame2 = await exameService.criar(2, "Raio-X", "EX002", "Radiologia", 120.0);
 
   
-  // Cadastro de Consulta
+  // Cadastro de Consulta com relações explícitas
   let consulta1: Consulta = new Consulta(1, paciente1, medico1, new Date("2025-09-20T10:00:00"), 200.0);
-  await consultaService.criar(consulta1);
+  consulta1 = await consultaService.criar(consulta1);
+  
+  // Re-carregar consulta com relações
+  consulta1 = await consultaService.buscar(consulta1.id!) as Consulta;
 
   // Cadastro de Agendamento
   const agendamento1 = await agendamentoService.criar(1, paciente1, consulta1, exame1, medico1, new Date("2025-09-21T09:00:00"), "Sala 1", "Agendado");
@@ -51,7 +54,7 @@ banco.initialize().then(async () => {
   console.log("Todas as consultas:", todasConsultas);
 
   // Listar todos os agendamentos
-  const todosAgendamentos = await agendamentoService.listarTodos();
+  const todosAgendamentos = await agendamentoService.listarTodosFormatado();
   console.log("Todos os agendamentos:", todosAgendamentos);
 
   // ================

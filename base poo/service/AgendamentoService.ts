@@ -21,6 +21,10 @@ export class AgendamentoService {
         return await this.repository.listar();
     }
 
+    async listarTodosFormatado(): Promise<Agendamento[]> {
+        return await this.repository.listarFormatado();
+    }
+
     async buscar(id: number): Promise<Agendamento | null> {
         return await this.repository.buscarPorId(id);
     }
