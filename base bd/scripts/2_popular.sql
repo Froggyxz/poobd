@@ -103,6 +103,7 @@ INSERT INTO pacientes (nome, cpf, data_nascimento) VALUES
 ('Fernanda Lopes Rocha', '10000000099', '1994-04-13'),
 ('João Pedro Campos', '10000000100', '1987-04-10');
 INSERT INTO medicos (nome, crm, especialidade) VALUES
+('Dr(a) Helder Sheinder','CRM001','Dermatologia'),
 ('Dr(a). Eduardo Rocha', 'CRM002', 'Oftalmologia'),
 ('Dr(a). Sofia Teixeira', 'CRM003', 'Endocrinologia'),
 ('Dr(a). Rafael Campos', 'CRM004', 'Oftalmologia'),
