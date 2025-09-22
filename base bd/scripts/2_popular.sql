@@ -102,8 +102,9 @@ INSERT INTO pacientes (nome, cpf, data_nascimento) VALUES
 ('Eduardo Campos Moura', '10000000098', '1993-10-29'),
 ('Fernanda Lopes Rocha', '10000000099', '1994-04-13'),
 ('João Pedro Campos', '10000000100', '1987-04-10');
+
 INSERT INTO medicos (nome, crm, especialidade) VALUES
--- Cardiologia
+-- Cardiologia (1-21)
 ('Dr(a) Helder Sheinder','CRM001','Cardiologia'),
 ('Dr(a). Gabriel Souza', 'CRM008', 'Cardiologia'),
 ('Dr(a). André Martins', 'CRM028', 'Cardiologia'),
@@ -115,8 +116,18 @@ INSERT INTO medicos (nome, crm, especialidade) VALUES
 ('Dr(a). Juliana Campos', 'CRM063', 'Cardiologia'),
 ('Dr(a). André Freitas', 'CRM074', 'Cardiologia'),
 ('Dr(a). Isabela Alves', 'CRM091', 'Cardiologia'),
--- Pediatria
-('Dr(a). Patrícia Freitas', 'CRM013', 'Pediatria'),
+('Dr(a). Cardiologista Extra 1', 'CRM101', 'Cardiologia'),
+('Dr(a). Cardiologista Extra 2', 'CRM102', 'Cardiologia'),
+('Dr(a). Cardiologista Extra 3', 'CRM103', 'Cardiologia'),
+('Dr(a). Cardiologista Extra 4', 'CRM104', 'Cardiologia'),
+('Dr(a). Cardiologista Extra 5', 'CRM105', 'Cardiologia'),
+('Dr(a). Cardiologista Extra 6', 'CRM106', 'Cardiologia'),
+('Dr(a). Cardiologista Extra 7', 'CRM107', 'Cardiologia'),
+('Dr(a). Cardiologista Extra 8', 'CRM108', 'Cardiologia'),
+('Dr(a). Cardiologista Extra 9', 'CRM109', 'Cardiologia'),
+('Dr(a). Patrícia Freitas', 'CRM013', 'Cardiologia'),
+
+-- Pediatria (22-41)
 ('Dr(a). Eduardo Lima', 'CRM022', 'Pediatria'),
 ('Dr(a). Patrícia Borges', 'CRM023', 'Pediatria'),
 ('Dr(a). Carlos Pereira', 'CRM036', 'Pediatria'),
@@ -127,7 +138,17 @@ INSERT INTO medicos (nome, crm, especialidade) VALUES
 ('Dr(a). Fernanda Campos', 'CRM061', 'Pediatria'),
 ('Dr(a). André Carvalho', 'CRM064', 'Pediatria'),
 ('Dr(a). André Alves', 'CRM096', 'Pediatria'),
--- Ortopedia
+('Dr(a). Pediatra Extra 1', 'CRM110', 'Pediatria'),
+('Dr(a). Pediatra Extra 2', 'CRM111', 'Pediatria'),
+('Dr(a). Pediatra Extra 3', 'CRM112', 'Pediatria'),
+('Dr(a). Pediatra Extra 4', 'CRM113', 'Pediatria'),
+('Dr(a). Pediatra Extra 5', 'CRM114', 'Pediatria'),
+('Dr(a). Pediatra Extra 6', 'CRM115', 'Pediatria'),
+('Dr(a). Pediatra Extra 7', 'CRM116', 'Pediatria'),
+('Dr(a). Pediatra Extra 8', 'CRM117', 'Pediatria'),
+('Dr(a). Pediatra Extra 9', 'CRM118', 'Pediatria'),
+
+-- Ortopedia (42-61)
 ('Dr(a). Larissa Andrade', 'CRM027', 'Ortopedia'),
 ('Dr(a). Gabriel Lopes', 'CRM032', 'Ortopedia'),
 ('Dr(a). Isabela Rocha', 'CRM039', 'Ortopedia'),
@@ -138,7 +159,19 @@ INSERT INTO medicos (nome, crm, especialidade) VALUES
 ('Dr(a). Patrícia Pereira', 'CRM095', 'Ortopedia'),
 ('Dr(a). Marina Freitas', 'CRM097', 'Ortopedia'),
 ('Dr(a). Marina Nogueira', 'CRM071', 'Ortopedia'),
--- Dermatologia
+('Dr(a). Ortopedista Extra 1', 'CRM119', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 2', 'CRM120', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 3', 'CRM121', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 4', 'CRM122', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 5', 'CRM123', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 6', 'CRM124', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 7', 'CRM125', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 8', 'CRM126', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 9', 'CRM127', 'Ortopedia'),
+('Dr(a). Ortopedista Extra 10', 'CRM128', 'Ortopedia'),
+
+-- Dermatologia (62-81)
+('Dr(a). Ortopedista Extra 11', 'CRM129', 'Dermatologia'),
 ('Dr(a). Fernanda Moura', 'CRM009', 'Dermatologia'),
 ('Dr(a). Ana Nogueira', 'CRM011', 'Dermatologia'),
 ('Dr(a). Paulo Costa', 'CRM016', 'Dermatologia'),
@@ -152,17 +185,23 @@ INSERT INTO medicos (nome, crm, especialidade) VALUES
 ('Dr(a). Fábio Souza', 'CRM098', 'Dermatologia'),
 ('Dr(a). Luiza Lima', 'CRM041', 'Dermatologia'),
 ('Dr(a). Larissa Souza', 'CRM043', 'Dermatologia'),
--- Endocrinologia
-('Dr(a). Sofia Teixeira', 'CRM003', 'Endocrinologia'),
-('Dr(a). Camila Andrade', 'CRM007', 'Endocrinologia'),
-('Dr(a). Eduardo Moura', 'CRM010', 'Endocrinologia'),
-('Dr(a). Tiago Campos', 'CRM012', 'Endocrinologia'),
-('Dr(a). Isabela Freitas', 'CRM017', 'Endocrinologia'),
-('Dr(a). Fernanda Rocha', 'CRM035', 'Endocrinologia'),
-('Dr(a). Isabela Campos', 'CRM093', 'Endocrinologia'),
-('Dr(a). Eduardo Moura', 'CRM094', 'Endocrinologia'),
-('Dr(a). Fernanda Andrade', 'CRM099', 'Endocrinologia'),
--- Neurologia
+('Dr(a). Dermatologista Extra 1', 'CRM130', 'Dermatologia'),
+('Dr(a). Dermatologista Extra 2', 'CRM131', 'Dermatologia'),
+('Dr(a). Dermatologista Extra 3', 'CRM132', 'Dermatologia'),
+('Dr(a). Dermatologista Extra 4', 'CRM133', 'Dermatologia'),
+('Dr(a). Dermatologista Extra 5', 'CRM134', 'Dermatologia'),
+('Dr(a). Dermatologista Extra 6', 'CRM135', 'Dermatologia'),
+
+-- Neurologia (82-100)
+('Dr(a). Sofia Teixeira', 'CRM003', 'Neurologia'),
+('Dr(a). Camila Andrade', 'CRM007', 'Neurologia'),
+('Dr(a). Eduardo Moura', 'CRM010', 'Neurologia'),
+('Dr(a). Tiago Campos', 'CRM012', 'Neurologia'),
+('Dr(a). Isabela Freitas', 'CRM017', 'Neurologia'),
+('Dr(a). Fernanda Rocha', 'CRM035', 'Neurologia'),
+('Dr(a). Isabela Campos', 'CRM093', 'Neurologia'),
+('Dr(a). Eduardo Moura', 'CRM094', 'Neurologia'),
+('Dr(a). Fernanda Andrade', 'CRM099', 'Neurologia'),
 ('Dr(a). Marina Campos', 'CRM005', 'Neurologia'),
 ('Dr(a). Tiago Rocha', 'CRM014', 'Neurologia'),
 ('Dr(a). Luiza Freitas', 'CRM025', 'Neurologia'),
@@ -172,39 +211,9 @@ INSERT INTO medicos (nome, crm, especialidade) VALUES
 ('Dr(a). Eduardo Moura', 'CRM066', 'Neurologia'),
 ('Dr(a). Paulo Costa', 'CRM072', 'Neurologia'),
 ('Dr(a). Gabriel Nogueira', 'CRM100', 'Neurologia'),
--- Oftalmologia
-('Dr(a). Eduardo Rocha', 'CRM002', 'Oftalmologia'),
-('Dr(a). Rafael Campos', 'CRM004', 'Oftalmologia'),
-('Dr(a). Tiago Alves', 'CRM006', 'Oftalmologia'),
-('Dr(a). Ana Andrade', 'CRM019', 'Oftalmologia'),
-('Dr(a). Rafael Rocha', 'CRM024', 'Oftalmologia'),
-('Dr(a). Luiza Andrade', 'CRM031', 'Oftalmologia'),
-('Dr(a). Tiago Silva', 'CRM044', 'Oftalmologia'),
-('Dr(a). Luiza Costa', 'CRM051', 'Oftalmologia'),
-('Dr(a). André Pereira', 'CRM080', 'Oftalmologia'),
--- Urologia
-('Dr(a). Patrícia Costa', 'CRM015', 'Urologia'),
-('Dr(a). André Pereira', 'CRM018', 'Urologia'),
-('Dr(a). Carlos Lima', 'CRM020', 'Urologia'),
-('Dr(a). Carlos Souza', 'CRM026', 'Urologia'),
-('Dr(a). Carlos Pereira', 'CRM040', 'Urologia'),
-('Dr(a). Rafael Lima', 'CRM078', 'Urologia'),
-('Dr(a). Marina Martins', 'CRM083', 'Urologia'),
-('Dr(a). Miguel Souza', 'CRM084', 'Urologia'),
-('Dr(a). André Rocha', 'CRM086', 'Urologia'),
-('Dr(a). João Costa', 'CRM090', 'Urologia'),
--- Gastroenterologia
-('Dr(a). Isabela Souza', 'CRM021', 'Gastroenterologia'),
-('Dr(a). Ana Alves', 'CRM059', 'Gastroenterologia'),
-('Dr(a). Marina Teixeira', 'CRM067', 'Gastroenterologia'),
-('Dr(a). Eduardo Andrade', 'CRM068', 'Gastroenterologia'),
-('Dr(a). Fernanda Andrade', 'CRM073', 'Gastroenterologia'),
-('Dr(a). Isabela Lopes', 'CRM075', 'Gastroenterologia'),
-('Dr(a). Paulo Teixeira', 'CRM076', 'Gastroenterologia'),
-('Dr(a). Isabela Rocha', 'CRM085', 'Gastroenterologia'),
-('Dr(a). Ana Andrade', 'CRM087', 'Gastroenterologia'),
-('Dr(a). Luiza Rocha', 'CRM089', 'Gastroenterologia'),
-('Dr(a). André Lima', 'CRM092', 'Gastroenterologia');
+('Dr(a). Dermatologista Extra 7', 'CRM136', 'Neurologia');
+
+
 
 INSERT INTO exames (nome, codigo, especialidade_requerida, valor) VALUES
 -- Cardiologia
