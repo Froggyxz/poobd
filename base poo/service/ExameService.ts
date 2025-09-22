@@ -8,7 +8,11 @@ export class ExameService {
         this.repository = new ExameRepository();
     }
 
-    async criar(id: number, nome: string, codigo: string, especialidade_requerida: string, valor: number): Promise<Exame> {
+    async criar(id: number, nome: string, codigo: string, especialidade_requerida: string, valor: number, medicoEspecialidade?: string): Promise<Exame> {
+        // Regra de negócio: só permite criar exame se especialidade do médico for igual à requerida
+        if (medicoEspecialidade && medicoEspecialidade !== especialidade_requerida) {
+            throw new Error("A especialidade do médico não corresponde à especialidade requerida para o exame.");
+        }
         const exame = new Exame(id, nome, codigo, especialidade_requerida, valor);
         return await this.repository.criar(exame);
     }

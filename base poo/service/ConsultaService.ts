@@ -10,8 +10,11 @@ export class ConsultaService {
         this.repository = new ConsultaRepository();
     }
 
-    async criar(consulta: Consulta): Promise<Consulta> {
-        //const consulta = new Consulta(consulta);
+    async criar(consulta: Consulta, especialidadeRequerida?: string): Promise<Consulta> {
+        // Regra de negócio: só permite criar consulta se especialidade do médico for igual à requerida
+        if (especialidadeRequerida && consulta.medico && consulta.medico.especialidade !== especialidadeRequerida) {
+            throw new Error("A especialidade do médico não corresponde à especialidade requerida para a consulta.");
+        }
         return await this.repository.criar(consulta);
     }
 
