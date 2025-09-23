@@ -1,129 +1,106 @@
-﻿POO
-
-
-Sistema de Agendamento Hospitalar
-
+============================================================
+SISTEMA DE AGENDAMENTO HOSPITALAR
+============================================================
 
 O software tem como objetivo gerenciar o agendamento de consultas e exames em um hospital, garantindo que as regras de negócio sejam validadas e que os profissionais médicos estejam aptos a realizar os procedimentos de acordo com suas especialidades.
 
+------------------------------------------------------------
+PARTE 1 — PROGRAMAÇÃO ORIENTADA A OBJETOS (POO)
+------------------------------------------------------------
 
-1. Entidades Principais (Mínimo 3 classes)
+ENTIDADES PRINCIPAIS (mínimo 3 classes):
+- Paciente: dados pessoais
+- Médico: informações profissionais e especialidades
+- Exame: tipos de exames e especialidades requeridas
+- Consulta: agendamentos de consultas médicas
+- Agendamento: agendamentos de exames e consultas
 
+OPERAÇÕES CRUD PARA TODAS AS ENTIDADES:
+- Listar todos os registros
+- Criar novo registro
+- Excluir um registro
+- Pesquisar um registro específico
 
-· Paciente: dados pessoais
-· Médico: informações profissionais e especialidades
-· Exame: tipos de exames e especialidades requeridas
-· Consulta: agendamentos de consultas médicas
-· AgendamentoExame: agendamentos de exames e consultas 
+REGRA PRINCIPAL:
+- Validação de Especialidade
+  * Pacientes podem ter múltiplas Consultas e Agendamentos
+  * Médicos podem realizar múltiplas Consultas e Agendamentos
+  * Exames podem estar em múltiplos Agendamentos
+  * Consultas pertencem a um Paciente e um Médico
+  * Agendamentos pertencem a um Paciente, um Exame e um Médico
 
+ESTRUTURA DO PROJETO (POO):
+- Controller: contém os controllers responsáveis por receber as requisições HTTP e chamar os services correspondentes.
+- Entity: define as classes que representam as tabelas no banco de dados.
+- Repository: concentra o acesso aos dados via TypeORM. Cada repositório encapsula operações de CRUD.
+- Service: implementa as regras de negócio, validando dados antes de salvar no banco.
+- HospitalRouter.ts: centraliza as rotas da aplicação, conectando endpoints aos controllers.
+- api.ts: define o roteamento da API e exporta para o app principal.
+- app.ts: inicializa o servidor Express, registra middlewares e rotas.
+- banco.ts: configura a conexão com o banco SQLite usando TypeORM.
+- banco.sqlite: base de dados local usada em desenvolvimento.
 
-2. Operações CRUD para todas as entidades
+------------------------------------------------------------
+PARTE 2 — BANCO DE DADOS (BD)
+------------------------------------------------------------
 
+FUNCIONALIDADES:
+- Cadastro de pacientes com informações pessoais
+- Registro de médicos com especialidades
+- Controle de tipos de exames disponíveis no hospital
+- Agendamento de consultas médicas
+- Agendamento de exames especializados
 
-· Listar todos os registros
-·  Criar novo registro
-·  Excluir um registro
-· Pesquisar um registro específico
+REQUISITOS PRINCIPAIS:
+- Gerenciamento completo de pacientes e seus dados
+- Controle de profissionais médicos e suas especialidades
+- Catálogo de exames disponíveis com valores e especialidades requeridas
+- Sistema de agendamento para consultas e exames
+- Controle de status das consultas e agendamentos
 
+RESTRIÇÕES DO BANCO DE DADOS:
+- Cada consulta deve estar associada a um paciente e um médico
+- Cada agendamento de exame deve estar associado a um paciente, um exame e um médico
+- Médicos devem possuir especialidade compatível com os exames que realizam
+- Pacientes podem ter múltiplas consultas e agendamentos
+- Exames possuem especialidades requeridas específicas
 
-Regra Principal: Validação de Especialidade
+------------------------------------------------------------
+MODELO DAS TABELAS
+------------------------------------------------------------
 
+PACIENTES
+- id (PK): Identificador único
+- nome: Nome completo do paciente
+- cpf: CPF único do paciente
+- data_nascimento: Data de nascimento
 
-· Pacientes → podem ter múltiplas Consultas e Agendamentos
-· Médicos → podem realizar múltiplas Consultas e Agendamentos
-· Exames → podem estar em múltiplos Agendamentos
-· Consultas → pertencem a um Paciente e um Médico
-· Agendamentos → pertencem a um Paciente, um Exame e um Médico
+MÉDICOS
+- id (PK): Identificador único
+- nome: Nome completo do médico
+- crm: CRM único do médico
+- especialidade: Especialidade médica
 
+EXAMES
+- id (PK): Identificador único
+- nome: Nome do exame
+- codigo: Código único do exame
+- especialidade_requerida: Especialidade médica requerida
+- valor: Valor do exame
 
-Banco de dados
+CONSULTAS
+- id (PK): Identificador único
+- paciente_id (FK): Referência ao paciente
+- medico_id (FK): Referência ao médico
+- data_consulta: Data e hora da consulta
+- valor: Valor da consulta
 
-
- Cadastro de pacientes com informações pessoais
-· Registro de médicos com especialidades
-· Controle de tipos de exames disponíveis no hospital
-· Agendamento de consultas médicas
-· Agendamento de exames especializados
-
-
- Requisitos Principais
-
-
-· Gerenciamento completo de pacientes e seus dados
-· Controle de profissionais médicos e suas especialidades
-· Catálogo de exames disponíveis com valores e especialidades requeridas
-· Sistema de agendamento para consultas e exames
-· Controle de status das consultas e agendamentos
-
-
- Restrições do Banco de Dados
-
-
-· Cada consulta deve estar associada a um paciente e um médico
-· Cada agendamento de exame deve estar associado a um paciente, um exame e um médico
-· Médicos devem possuir especialidade compatível com os exames que realizam
-· Pacientes podem ter múltiplas consultas e agendamentos
-· Exames possuem especialidades requeridas específicas
-
-
-1. PACIENTES
-
-
-· id (PK): Identificador único
-· nome: Nome completo do paciente
-· cpf: CPF único do paciente
-· data_nascimento: Data de nascimento
-
-
-2. MÉDICOS
-
-
-· id (PK): Identificador único
-· nome: Nome completo do médico
-· crm: CRM único do médico
-· especialidade: Especialidade médica
-
-
-
-
-3. EXAMES
-
-
-· id (PK): Identificador único
-· nome: Nome do exame
-· codigo: Código único do exame
-· especialidade_requerida: Especialidade médica requerida
-· valor: Valor do exame
-
-
-
-
-4. CONSULTAS
-
-
-· id (PK): Identificador único
-· paciente_id (FK): Referência ao paciente
-· medico_id (FK): Referência ao médico
-· data_consulta: Data e hora da consulta
-· Valor: valor da consulta 
-
-
-5. AGENDAMENTOS
-
-
-· id (PK): Identificador único
-· paciente_id (FK): Referência ao paciente
-consulta_id: Referencia a consulta
-· exame_id (FK): Referência ao exame
-· medico_id (FK): Referência ao médico
-· data_agendamento: Data e hora do agendamento
-· sala: Sala do exame
-· status: Status do agendamento
-
-
-
-comandos git:
-git commit -m "descrição" (salva as alterações )
-git push (repositorio local/seu codespace) (repsotiorio sendo ele main ou branch) 
-git branch (faz outra "pasta", altera coisas sem ser o principal)
-git merge (funde a branch com o main)
+AGENDAMENTOS
+- id (PK): Identificador único
+- paciente_id (FK): Referência ao paciente
+- consulta_id (FK): Referência à consulta
+- exame_id (FK): Referência ao exame
+- medico_id (FK): Referência ao médico
+- data_agendamento: Data e hora do agendamento
+- sala: Sala do exame
+- status: Status do agendamento
