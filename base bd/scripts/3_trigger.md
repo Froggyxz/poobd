@@ -1,7 +1,16 @@
-O trigger criado realiza operações de seleção em duas tabelas do banco:
-Medico e Exame.
-
-Explicação detalhada:
-Antes de inserir um novo registro na tabela Agendamento, o trigger executa duas consultas (SELECT): Busca a especialidade do médico (especialidade_medico) na tabela Medico usando o medico_id do novo agendamento. Busca a especialidade requerida do exame (especialidade_exame) na tabela Exame usando o exame_id do novo agendamento.
-Após obter esses valores, o trigger compara as especialidades.
-Se forem diferentes, o trigger impede o agendamento, lançando um erro com a mensagem: "Especialidade do médico não é compatível com o exame agendado."
+Trigger de Validação de Especialidade — valida_especialidade_agendamento
+Objetivo:
+Impedir que seja criado (ou atualizado, se existir a versão de UPDATE) um agendamento em que a especialidade do médico não seja compatível com a especialidade requerida do exame.
+O que essa trigger faz:
+Antes de inserir um novo registro em agendamentos, ela busca as especialidades em medicos e exames, compara e, se forem diferentes, bloqueia a operação com um erro.
+Como funciona:
+Disparo: BEFORE INSERT na tabela agendamentos.
+Busca a especialidade do médico usando NEW.medicos_id.
+Busca a especialidade requerida do exame usando NEW.exames_id.
+Compara: se uma delas estiver vazia ou se forem diferentes, a trigger dispara um erro com a mensagem: "Especialidade do médico não é compatível com o exame agendado."
+Por que existe:
+Garante a regra de negócio central de compatibilidade de especialidade mesmo que a aplicação esqueça de validar.
+Mantém a integridade do banco para qualquer cliente.
+Como testar:
+Compatível: Médico “Cardiologia” + Exame que requer “Cardiologia” → deve funcionar.
+Incompatível: Médico “Radiologia” + Exame que requer “Cardiologia” → deve falhar com a mensagem da trigger.
